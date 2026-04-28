@@ -1,10 +1,15 @@
 [gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://cwmhgikenl3dv"]
 
+[ext_resource type="AudioStream" uid="uid://b2b5xr0yvlc17" path="res://weapons/glock/fire.mp3" id="1_0as8u"]
 [ext_resource type="Script" uid="uid://c44c5isnymvna" path="res://weapons/weapon_data.gd" id="1_150wc"]
-[ext_resource type="PackedScene" uid="uid://chvweljbn0l5e" path="res://weapons/glock/glock.tscn" id="1_lpvc4"]
+[ext_resource type="PackedScene" uid="uid://bvipgb23yjsmo" path="res://weapons/glock/glock_view.tscn" id="2_tftp7"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0as8u"]
+streams_count = 1
+stream_0/stream = ExtResource("1_0as8u")
 
 [resource]
 script = ExtResource("1_150wc")
-name = "glock"
-scene = ExtResource("1_lpvc4")
+view_scene = ExtResource("2_tftp7")
+attack_audio = SubResource("AudioStreamRandomizer_0as8u")
 metadata/_custom_type_script = "uid://c44c5isnymvna"

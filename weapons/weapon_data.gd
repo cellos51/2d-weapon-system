@@ -1,4 +1,5 @@
 class_name WeaponData
 extends Resource
 
-@export var scene: PackedScene
+@export var view_scene: PackedScene
+@export var attack_audio: AudioStream

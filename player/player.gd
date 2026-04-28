@@ -78,5 +78,5 @@ func equip_weapon(weapon_data: WeaponData) -> void:
 	elif is_instance_valid(weapon):
 		weapon.queue_free()
 
-	weapon = weapon_data.scene.instantiate()
+	weapon = Weapon.new(weapon_data)
 	player_camera.add_child(weapon)

@@ -22,10 +22,23 @@ var view_bob_transition: float = 0.0
 var elapsed_time_walking: float = 0.0
 var walking_speed: float = 0.0
 
-var gun_view_last_position := Vector3()
+var last_position := Vector3()
 
-@onready var gun_view: Node3D = $View
+var gun_view: Node3D = null
+var gun_attack_audio: AudioStreamPlayer = null
+
 @onready var gun_view_initial_position: Vector3 = gun_view.transform.origin
+
+
+
+
+func _init(weapon_data: WeaponData) -> void:
+	gun_view = weapon_data.view_scene.instantiate()
+	add_child(gun_view)
+
+	gun_attack_audio = AudioStreamPlayer.new()
+	gun_attack_audio.stream = weapon_data.attack_audio
+	add_child(gun_attack_audio)
 
 
 func _process(delta: float) -> void:
@@ -37,11 +50,11 @@ func _process(delta: float) -> void:
 			view_sway_position +
 			view_bob_position +
 			view_recoil_position)
-	gun_view_last_position = gun_view.global_position
+	last_position = (global_position - global_transform.basis.z) 
 
 
 func _view_sway(delta: float) -> void:
-	view_sway_position -= global_transform.basis.inverse() * (gun_view.global_position - gun_view_last_position)
+	view_sway_position -= global_transform.basis.inverse() * ((global_position - global_transform.basis.z) - last_position)
 	view_sway_position = view_sway_position.clamp(-VIEW_SWAY_MAX_DISTANCE, VIEW_SWAY_MAX_DISTANCE)
 	
 	view_sway_position.x = lerp(view_sway_position.x, 0.0, VIEW_SWAY_SPEED.x * delta)
@@ -62,6 +75,8 @@ func _view_bob(delta: float) -> void:
 
 
 func attack() -> void:
+	gun_attack_audio.play()
+
 	var recoil_vector := Vector2.RIGHT.rotated(VIEW_RECOIL_ANGLE) * VIEW_RECOIL_INTENSITY
 	view_recoil_position.x -= recoil_vector.x
 	view_recoil_position.y += recoil_vector.y
