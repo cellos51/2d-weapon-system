@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://2utt2n30pmso"]
+
+[ext_resource type="PackedScene" uid="uid://cihad8mope32i" path="res://scenes/world.tscn" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://dpav2f81bhi6h" path="res://player/player_spawn.gd" id="2_h2yge"]
+[ext_resource type="Resource" uid="uid://cwmhgikenl3dv" path="res://weapons/glock/glock_data.tres" id="3_h2yge"]
+
+[node name="Main" type="Node" unique_id=1595398310]
+
+[node name="World" parent="." unique_id=1096252454 instance=ExtResource("1_0xm2m")]
+
+[node name="PlayerSpawn" type="Marker3D" parent="." unique_id=1155564631]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4407122, 0)
+script = ExtResource("2_h2yge")
+player_weapon = ExtResource("3_h2yge")
+metadata/_custom_type_script = "uid://dpav2f81bhi6h"

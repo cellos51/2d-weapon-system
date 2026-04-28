@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://cwmhgikenl3dv"]
+
+[ext_resource type="Script" uid="uid://c44c5isnymvna" path="res://weapons/weapon_data.gd" id="1_150wc"]
+[ext_resource type="PackedScene" uid="uid://chvweljbn0l5e" path="res://weapons/glock/glock.tscn" id="1_lpvc4"]
+
+[resource]
+script = ExtResource("1_150wc")
+name = "glock"
+scene = ExtResource("1_lpvc4")
+metadata/_custom_type_script = "uid://c44c5isnymvna"

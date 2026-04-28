@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://cihad8mope32i"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e5uuo"]
+
+[sub_resource type="Sky" id="Sky_nnsk1"]
+sky_material = SubResource("ProceduralSkyMaterial_e5uuo")
+
+[sub_resource type="Environment" id="Environment_rwgxs"]
+background_mode = 2
+sky = SubResource("Sky_nnsk1")
+
+[sub_resource type="BoxMesh" id="BoxMesh_e5uuo"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nnsk1"]
+size = Vector3(10, 1, 10)
+
+[node name="World" type="Node3D" unique_id=1096252454]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1330149819]
+transform = Transform3D(0.9659258, -0.25, 0.066987306, 0, 0.25881907, 0.9659258, -0.25881904, -0.93301266, 0.25000003, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1173306815]
+environment = SubResource("Environment_rwgxs")
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=163886206]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=1315278643]
+mesh = SubResource("BoxMesh_e5uuo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=1391511105]
+shape = SubResource("BoxShape3D_nnsk1")
