@@ -43,17 +43,9 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Handle weapon.
-	if is_instance_valid(weapon):
-		# Set view bobbing.
-		if is_on_floor():
-			weapon.walking_speed = velocity.length()
-		else:
-			weapon.walking_speed = 0.0
-
-		# Handle attack.
-		if Input.is_action_just_pressed("game_attack"):
-			weapon.attack()
+	# Handle weapon attack.
+	if Input.is_action_just_pressed("game_attack") and is_instance_valid(weapon):
+		weapon.attack()
 
 	# Handle jump.
 	if Input.is_action_just_pressed("game_jump") and is_on_floor():
@@ -78,5 +70,5 @@ func equip_weapon(weapon_data: WeaponData) -> void:
 	elif is_instance_valid(weapon):
 		weapon.queue_free()
 
-	weapon = Weapon.new(weapon_data)
+	weapon = Weapon.new(self, weapon_data)
 	player_camera.add_child(weapon)
