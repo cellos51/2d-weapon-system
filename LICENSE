@@ -1,10 +1,3 @@
-The following files are NOT covered by the MIT License:
-- /weapons/glock/fire.mp3
-- /weapons/glock/fire.png
-- /weapons/glock/glock.png
-
-All rights are reserved for these files unless otherwise specified.
-
 MIT License
 
 Copyright (c) 2026 Elliptical
@@ -26,3 +19,10 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+The following files are NOT covered by the MIT License:
+- /weapons/glock/fire.mp3
+- /weapons/glock/fire.png
+- /weapons/glock/glock.png
+
+All rights are reserved for these files unless otherwise specified.
