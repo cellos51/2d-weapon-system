@@ -12,4 +12,7 @@ stream_0/stream = ExtResource("1_0as8u")
 script = ExtResource("1_150wc")
 view_scene = ExtResource("2_tftp7")
 attack_audio = SubResource("AudioStreamRandomizer_0as8u")
+damage = 30.0
+attack_speed = 4.0
+attack_range = 4096.0
 metadata/_custom_type_script = "uid://c44c5isnymvna"
