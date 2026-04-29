@@ -13,7 +13,12 @@ const VIEW_RECOIL_ANGLE: float = 3.34 # This is in radians.
 const VIEW_RECOIL_INTENSITY: float = 0.3
 const VIEW_RECOIL_SPEED: float = 20.0
 
+const MUZZLE_FLASH_DURATION: float = 0.05
+const SLIDE_BACK_DURATION: float = 0.1
+
 var weapon: Weapon = null
+var muzzle_flash_timer: Timer = null
+var slide_back_timer: Timer = null
 
 var view_recoil_position := Vector3()
 var view_sway_position := Vector3()
@@ -27,7 +32,25 @@ var last_position := Vector3()
 @onready var initial_position: Vector3 = transform.origin
 
 @onready var weapon_sprite: Sprite3D = $WeaponSprite
+@onready var muzzle_flash: Node3D = $MuzzleFlash
 
+
+func _ready() -> void:
+	muzzle_flash_timer = Timer.new()
+	muzzle_flash_timer.name = "MuzzleFlashTimer"
+	muzzle_flash_timer.one_shot = true
+	muzzle_flash_timer.timeout.connect(func():
+		muzzle_flash.visible = false
+	)
+	add_child(muzzle_flash_timer)
+
+	slide_back_timer = Timer.new()
+	slide_back_timer.name = "SlideBackTimer"
+	slide_back_timer.one_shot = true
+	slide_back_timer.timeout.connect(func():
+		weapon_sprite.frame = 0
+	)
+	add_child(slide_back_timer)
 
 func _process(delta: float) -> void:
 	view_recoil_position = lerp(view_recoil_position, Vector3.ZERO, VIEW_RECOIL_SPEED * delta)
@@ -64,7 +87,13 @@ func _view_bob(delta: float) -> void:
 			sin(elapsed_time_walking * VIEW_BOB_SPEED.y) * VIEW_BOB_INTENSITY.y, 0.0) * view_bob_transition
 
 
-func recoil() -> void:
+func attack_effects() -> void:
 	var recoil_vector := Vector2.RIGHT.rotated(VIEW_RECOIL_ANGLE) * VIEW_RECOIL_INTENSITY
 	view_recoil_position.x -= recoil_vector.x
 	view_recoil_position.y += recoil_vector.y
+
+	muzzle_flash.visible = true
+	muzzle_flash_timer.start(MUZZLE_FLASH_DURATION)
+
+	weapon_sprite.frame = 1 # 1 = frame 2 of sprite sheet.
+	slide_back_timer.start(SLIDE_BACK_DURATION)

@@ -20,10 +20,12 @@ func _init(player_reference: Player, weapon_data: WeaponData) -> void:
 	add_child(weapon_view)
 
 	attack_audio = AudioStreamPlayer.new()
+	attack_audio.name = "AttackAudio"
 	attack_audio.stream = weapon_data.attack_audio
 	add_child(attack_audio)
 
 	attack_timer = Timer.new()
+	attack_timer.name = "AttackTimer"
 	attack_timer.one_shot = true
 	add_child(attack_timer)
 
@@ -51,4 +53,4 @@ func attack() -> void:
 
 
 	attack_audio.play()
-	weapon_view.recoil()
+	weapon_view.attack_effects()

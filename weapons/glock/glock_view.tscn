@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://br65l5ljnpdh3" path="res://weapons/weapon_view.gd" id="1_6xn2u"]
 [ext_resource type="Texture2D" uid="uid://da4h4j5b27f7t" path="res://weapons/glock/glock.png" id="1_gxu2r"]
+[ext_resource type="Texture2D" uid="uid://b47q5eucrb5fv" path="res://weapons/glock/fire.png" id="3_jjobu"]
 
 [node name="View" type="Node3D" unique_id=762137184]
 script = ExtResource("1_6xn2u")
@@ -10,4 +11,12 @@ metadata/_custom_type_script = "uid://br65l5ljnpdh3"
 [node name="WeaponSprite" type="Sprite3D" parent="." unique_id=2108099754]
 transform = Transform3D(0.43, 0, 0, 0, 0.43, 0, 0, 0, 0.43, 0.515, -0.377, -0.687)
 texture = ExtResource("1_gxu2r")
-hframes = 4
+hframes = 2
+
+[node name="MuzzleFlash" type="Node3D" parent="." unique_id=35688568]
+visible = false
+
+[node name="Fire" type="Sprite3D" parent="MuzzleFlash" unique_id=1084851954]
+transform = Transform3D(0.455, 0, 0, 0, 0.455, 0, 0, 0, 0.455, 0.3401017, -0.1468592, -0.84141713)
+double_sided = false
+texture = ExtResource("3_jjobu")
